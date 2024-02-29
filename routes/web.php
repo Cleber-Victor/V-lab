@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
+// returns the home page with all posts
+Route::get('/',function() {
     return view('welcome');
 });
+
+Route::get ('/category',[CategoryController::class, 'index'])->name('category.index');
+
+Route::get ('/category/create',[CategoryController::class, 'create'])->name('category.create');
+
+Route::post ('/category',[CategoryController::class, 'store'])->name('category.store');
