@@ -13,22 +13,20 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('categories_id');
-            $table->string('name');
-            $table->string('tipo');
-            $table->string('valor');
             $table->string('user');
+            $table->boolean('type'); // 0 recebeu 1 pagou
+            $table->string('valor');
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
-
-            $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade');
+            
         });
     }
 
-    /**
+    /**s
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+
     }
 };
